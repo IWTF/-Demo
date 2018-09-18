@@ -1,0 +1,58 @@
+<!--pages/my_launch_detail/my_launch_detail.wxml-->
+<view>
+  <image src='{{activity.imgUrl}}' class='bg'></image>
+  <view class='middle'>
+    <view>{{activity.name}}</view>
+    <view class='poster_container' style='padding 0;'>
+      <view class='poster' style='border-style: none;'>发起者：{{activity.userName}}</view>
+      <view style='border-style: none;'>点赞数：0</view>
+      <view style='margin-left:20rpx;border-style: none;'>评论数：0</view>
+    </view>
+    <view>活动地点     {{activity.place}}</view>
+    <view>有效时间     {{activity.date}}</view>
+    <view>活动类型     {{activity.typ}}</view>
+    <view wx:if="{{activity.num < 100}}">人数限制     {{activity.num}}</view>
+    <view wx:else>人数限制      {{activity.num}}</view>
+    <view>发起状态      <text style='color:red;'>准备中</text></view>
+  </view>
+  <view class='content_container'>
+    <view class='content'>详情</view>
+    <view style='padding: 50rpx 30rpx;'>{{activity.content}}</view>
+  </view>
+  <view class='talk_container'>
+    <view class='header'>
+      <view>{{like_num}}人点赞</view>
+      <button wx:if='{{!like}}' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+        <image src='/images/icon/like.png'></image>
+      </button>
+      <button wx:else open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+        <image src='/images/icon/like1.png'></image>
+      </button>
+    </view>
+    <view class='kong'  wx:if="{{likersUrl.length == 0}}">无人点赞</view>
+    <view class='kong' wx:else style='display:flex;flex-direction:row;'>
+      <block wx:for="{{likersUrl}}" wx:key="{{index}}">
+        <image src='{{item}}'></image>
+      </block>
+    </view>
+  </view>
+  <view class='talk_container' style='border-bottom:200rpx solid #e2e2e2;'>
+    <view class='header'>
+      <view>{{join_num}}人参加</view>
+      <view wx:if="{{activity.num < 100}}" style='margin-left: 430rpx;'>上限 {{activity.num}} 人</view>
+      <view wx:else style='margin-left: 430rpx;'>不限制人数</view>
+    </view>
+    <view class='kong'  wx:if="{{joiner.length == 0}}">暂无人加入</view>
+    <view class='kong' wx:else style='display:flex;flex-direction:row;'>
+      <block wx:for="{{joiner}}" wx:key="{{index}}">
+        <image src='{{item}}'></image>
+      </block>
+    </view>
+  </view>
+  <view class='btn'>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="del">删除活动</button>
+    <navigator url='/pages/revise/revise?name={{activity.name}}&type={{activity.typ}}&place={{activity.place}}&time={{activity.date}}&limit={{activity.limit}}&num={{activity.num}}&content={{activity.content}}&imgUrl={{activity.imgUrl}}&objId={{objId}}'>
+      <button>更改信息</button>
+    </navigator>
+  </view>
+</view>

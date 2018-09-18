@@ -1,0 +1,4 @@
+<!--pages/suggestion/suggestion.wxml-->
+<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class='btn'>
+ {{btn}}
+</button>

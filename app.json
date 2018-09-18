@@ -1,0 +1,45 @@
+{
+  "pages":[
+    "pages/login/login",
+    "pages/launch/launch",
+    "pages/program/program",
+    "pages/home/home",
+    "pages/trends/trends",         
+    "pages/act_detail/act_detail", 
+    "pages/my_launch/my_launch",    
+    "pages/join/join",    
+    "pages/collect/collect",  
+    "pages/search/search",    
+    "pages/suggestion/suggestion", 
+    "pages/more/more",   
+    "pages/about/about",
+    "pages/log/log",
+    "pages/guide/guide",
+    "pages/my_launch_detail/my_launch_detail",
+    "pages/revise/revise"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#1190fe",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/home/home",
+      "text": "主页",
+      "iconPath": "/images/icon/home.png",
+      "selectedIconPath": "/images/icon/home1.png"
+    },{
+      "pagePath": "pages/launch/launch",
+      "text": "发起",
+      "iconPath": "/images/icon/launch.png",
+      "selectedIconPath": "/images/icon/launch1.png"
+    },{
+      "pagePath": "pages/trends/trends",
+      "text": "动态",
+      "iconPath": "/images/icon/trend.png",
+      "selectedIconPath": "/images/icon/trend1.png"
+    }]
+  }
+}

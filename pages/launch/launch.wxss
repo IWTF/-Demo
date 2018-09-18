@@ -1,0 +1,88 @@
+/* pages/launch/launch.wxss */
+.container{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid #e9e9e9;
+  padding: 20rpx 0;
+  margin: 0 20rpx;
+}
+
+.name{
+  margin: 0;
+  flex: 4;
+  
+  font-size: 31rpx;
+  color: #6d6d6d;
+}
+
+.form{
+  color: #868686;
+  text-align: right;
+  flex: 8;
+  font-size: 30rpx;
+}
+
+.tri{
+  font-size: 0;
+  line-height: 0;
+  border-width: 9rpx;
+  border-right-width: 0;
+  border-style: dashed;
+  border-left-style: solid;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: #b8b8b8;
+  flex: 1;
+  margin: 0 12rpx;
+}
+
+.kind{
+  font-size: 30rpx;
+  color: #868686;
+  margin-left: 460rpx;
+}
+
+.content{
+  width: 100%;
+  font-size: 30rpx;
+  color: #868686;
+  padding: 15rpx 30rpx;
+  height: 200rpx;
+}
+
+.add{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2rpx solid #e9e9e9;
+  margin-bottom: 20rpx;
+}
+
+.add image{
+  width: 150rpx;
+  height: 120rpx;
+  margin: 40rpx 30rpx 40rpx 40rpx;
+}
+
+.add view{
+  width: 100%;
+  height: 40rpx;
+  font-size: 31rpx;
+  color: #9c9c9c;
+  margin: auto;
+}
+
+.btn_container{
+  padding: 30rpx 0;
+  border-top: 1rpx solid #e9e9e9;
+  border-bottom: 1rpx solid #e9e9e9;
+  margin-bottom: 30rpx;
+}
+
+.btn{
+  border-radius: 50rpx;
+  background-color: #1190fe;
+  color: #fff;
+  font-size: 33rpx;
+  width: 400rpx;
+  margin: auto;
+}

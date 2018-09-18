@@ -1,0 +1,27 @@
+<!--pages/collect/collect.wxml-->
+<view>
+  <view class='header'>
+    <view class='launch'>我的收藏</view>
+    <view class='totle'>共收藏 {{activity.length}} 个</view>
+  </view>
+  <view class='content' wx:if="{{activity.length == 0}}">
+    <image src='/images/icon/kong.png'></image>
+    <view>暂无收藏</view>
+  </view>
+  <view wx:else>
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{activity}}" wx:key="{{index}}">
+      <view class="content_container">
+        <navigator url='/pages/act_detail/act_detail?objectId={{item.actId}}&page=2' class='container' hover-class="none">
+          <image src='{{item.imgUrl}}'></image>
+          <view class='text_container'>
+            <view style='font-size: 36rpx;color:#000;padding-bottom:10rpx;'>{{item.name}}</view>
+            <view wx:if="{{item.date > now}}">活动时间：{{item.date}}</view>
+            <view wx:else>活动时间：<text style='color:red;font-size: 27rpx;'>已过期</text></view>
+            <view>活动地点：{{item.place}}</view>
+          </view>
+        </navigator>
+      </view>
+      <view class="del" catchtap="del" data-index="{{index}}">取消收藏</view>
+    </view>
+  </view>
+</view>

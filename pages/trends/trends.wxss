@@ -1,0 +1,49 @@
+/* pages/trends/trends.wxss */
+.report_header{
+  display: flex;
+  flex-direction: row;
+  padding: 15rpx 0;
+  border-bottom: 2rpx solid #ececec;
+}
+
+.report_header image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 22rpx;
+}
+
+.report_header view{
+  font-size: 27rpx;
+  margin-left: 10rpx;
+  margin-top: 3rpx;
+}
+
+.detail{
+  margin: 5rpx 10rpx;
+  border-radius: 4rpx;
+  box-shadow: 0 0 5rpx #ececec;
+}
+
+.kong{
+  width: 120rpx;
+  height: 120rpx;
+  margin: 3rpx 320rpx;
+}
+
+.poster{
+  display: flex;
+  flex-direction: row;
+  margin: 5rpx 5rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+
+.poster image{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+
+.detail_content{
+  margin: 5rpx 5rpx;
+  word-spacing: 1rpx;
+}

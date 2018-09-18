@@ -1,0 +1,49 @@
+<!--pages/trends/trends.wxml-->
+<view>
+<!-- 通知 -->
+  <view style='border-bottom: 20rpx solid #e9e9e9;border-top: 20rpx solid #e9e9e9;'>
+    <view class='report_header'>
+      <image src='/images/icon/report.png' style='width:40rpx;height:40rpx;'></image>
+      <view>通知</view>
+    </view>
+    <view wx:if="{{report.length == 0}}" style='padding: 55rpx 0;'>
+      <image src='/images/icon/kong.png' class='kong'></image>
+      <view style='text-align:center;font-size:25rpx;color:#cacaca;'>暂无通知</view>
+    </view>
+    <view wx:else>
+      <block wx:for="{{report}}" wx:key="{{index}}">
+        <view class='detail'>
+          <view class='poster'>
+            <image src='{{item.avatarImg}}'></image>
+            <view style='font-size:24rpx;'>{{item.nickName}}</view>
+            <view style='font-size:24rpx;color:#cacaca;'>{{now_time}}</view>
+          </view>
+          <view class='detail_content'>{{item.content}}</view>
+        </view>  
+      </block>
+    </view>
+  </view>
+<!-- 消息 -->
+  <view style='border-bottom: 20rpx solid #e9e9e9;'>
+    <view class='report_header'>
+      <image src='/images/icon/message.png'></image>
+      <view style='margin-top:5rpx;'>消息</view>
+    </view>
+    <view wx:if="{{report.length == 0}}" style='padding: 55rpx 0;'>
+      <image src='/images/icon/kong.png' class='kong'></image>
+      <view style='text-align:center;font-size:25rpx;color:#cacaca;'>暂无消息</view>
+    </view>
+    <view wx:else>
+      <block wx:for="{{message}}" wx:key="{{index}}">
+        <view class='detail'>
+          <view class='poster'>
+            <image src='{{item.avatarImg}}'></image>
+            <view style='font-size:24rpx;'>{{item.nickName}}</view>
+            <view style='font-size:24rpx;color:#cacaca;'>{{now_time}}</view>
+          </view>
+          <view class='detail_content'>{{item.content}}</view>
+        </view>  
+      </block>
+    </view>
+  </view>
+</view>

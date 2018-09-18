@@ -1,0 +1,31 @@
+<!--pages/my_launch/my_launch.wxml-->
+<view>
+  <view class='header'>
+    <view class='launch'>我的发起</view>
+    <view class='totle'>共发起 {{activity.length}} 个</view>
+  </view>
+  <view class='content' wx:if="{{activity.length == 0}}">
+    <image src='/images/icon/kong.png'></image>
+    <view>暂无发起</view>
+  </view>
+  <view wx:else>
+    <block wx:for="{{activity}}" wx:key="{{index}}">
+      <view class="post_container">
+        <view>
+          <view class='sort' style='margin:10rpx 0rpx;'>
+            <text style='background-color:#00ceab;margin-left:0rpx;'></text>
+            <text>{{item.typ}}</text>
+          </view>
+          <navigator url='/pages/my_launch_detail/my_launch_detail?objectId={{id[index]}}'>
+            <image src='{{item.imgUrl}}' class='post_img'></image>
+          </navigator>
+          <view style='font-size:26rpx;'>{{item.name}}</view>
+          <view class='inf'>
+            <view >有效时间：{{item.date}}</view>
+            <view style='padding-bottom:15rpx;'>活动地点：{{item.place}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

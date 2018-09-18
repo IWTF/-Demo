@@ -1,0 +1,19 @@
+/* pages/program/program.wxss */
+.title{
+  font-size: 34rpx;
+  text-align: center;
+  padding: 25rpx 0;
+  font-weight: bold;
+  letter-spacing: 4rpx;
+}
+
+.content{
+  height: 600rpx;
+  font-size: 29rpx;
+  margin: 10rpx 30rpx;
+  border-radius: 10rpx;
+  padding: 15rpx 10rpx;
+  box-shadow: 0 0 15rpx #bdbdbd;
+  letter-spacing: 3rpx;
+  line-height: 34rpx;
+}

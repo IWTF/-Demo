@@ -1,0 +1,51 @@
+<!-- 滑动菜单 -->
+<template name="page_tab">
+  <view class='page_tab'>
+    <view class="user">
+      <image src='{{userInfo.avatarUrl}}' class='user_img'></image>
+      <view>
+        <text class='user_name'>{{userInfo.nickName}}</text>
+        <image src='/images/icon/boy.png' class='sex'></image>
+      </view>
+    </view>
+    <view class='sport'>
+      <view style='margin-left:80rpx;'>
+        <text style='font-size:44rpx;'>步数</text>
+        <text>2543</text>
+      </view>
+      <view style='margin-left:50rpx;'>
+        <text style='font-size:44rpx;'>排名</text>
+        <text>12</text>
+      </view>
+    </view>
+    <view class='item'>
+      <image src='/images/icon/my_launch.png'></image>
+      <navigator url='/pages/my_launch/my_launch' hover-class="none"><view>我发起的</view></navigator>
+    </view>
+    <view class='item'>
+      <image src='/images/icon/join.png'></image>
+      <navigator url='/pages/join/join' hover-class="none"><view>我加入的</view></navigator> 
+    </view>
+    <view class='item'>
+      <image src='/images/icon/collect.png'></image>
+      <navigator url='/pages/collect/collect' hover-class="none"><view>我的收藏</view></navigator>
+    </view>
+    <view class='item'>
+      <image src='/images/icon/program.png'></image>
+      <navigator url='/pages/program/program' hover-class="none"><view>项目介绍</view></navigator>
+      <!-- <view>项目介绍</view> -->
+    </view>
+    <view class='item'>
+      <image src='/images/icon/suggest.png'></image>
+      <navigator url='/pages/suggestion/suggestion' hover-class="none"><view>反馈建议</view></navigator>
+    </view>
+    <view class='item'>
+      <image src='/images/icon/more.png'></image>
+      <navigator url='/pages/more/more' hover-class="none"><view>更多信息</view></navigator>
+    </view>
+  </view>
+</template>
+
+<template name="bg">
+  <view class='bg' bindtap='hideview' style='display:{{display}}'></view>
+</template>

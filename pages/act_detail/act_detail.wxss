@@ -1,0 +1,161 @@
+/* pages/act_detail/act_detail.wxss */
+
+.bg{
+  width: 100%;
+  height: 400rpx;
+}
+
+.middle{
+  font-size: 30rpx;
+  margin: 20rpx 25rpx 10rpx 25rpx;
+  border-bottom: 24rpx solid #e2e2e2;
+}
+
+.middle view{
+  border-bottom: 1rpx solid #e2e2e2;
+  padding: 12rpx 0;
+}
+
+.poster_container{
+  display: flex;
+  flex-direction: row;
+  color: #b4b4b4;
+}
+
+.poster{
+  width: 400rpx;
+}
+
+.content_container{
+  font-size: 30rpx;
+  border-bottom: 12rpx solid #e2e2e2;
+  margin: 20rpx 25rpx;
+}
+
+.content{
+  width: 66rpx;
+  margin: auto;
+  border-bottom: 12rpx solid #489cfc;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  padding: 6rpx 0;
+  border-bottom: 1rpx solid #e2e2e2;
+}
+
+.header button{
+  background-color: #fff;
+  padding: 0;
+  height: 58rpx;
+  margin-top: -25rpx;
+}
+
+.header button::after{
+  border: 0;
+}
+
+.header image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-left: 450rpx;
+}
+
+.talk_container{
+  margin: 5rpx 25rpx;
+  font-size: 30rpx;
+  border-bottom: 10rpx solid #e2e2e2;
+  background-color: #fff;
+}
+
+.kong{
+  padding: 40rpx 0;
+  text-align: center;
+}
+
+.kong image{
+  width:80rpx;
+  height: 80rpx;
+  margin: 20rpx 15rpx;
+  border-radius: 50%;
+}
+
+.btn{
+  width: 100%;
+  position: fixed;
+  bottom: 0rpx;
+  margin: 10rpx 0 0 0;
+  border-top: 1rpx solid #e2e2e2;
+  padding: 15rpx 0;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+}
+
+.btn button{
+  width:250rpx;
+  margin: auto;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  background-color: #489cfc;
+  color: #fff;
+}
+
+/* 评论列表 */
+.avatar_image{
+  width:80rpx;
+  height:80rpx;
+  margin-right:10rpx;
+  border-radius: 50%;
+}
+.name_container{
+  display: flex;
+  flex-direction: row;
+}
+
+.name_container image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 480rpx;
+}
+
+
+/* 评论框 */
+.talk_bar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  z-index: -1;
+  background-color: #fff;
+}
+
+.holder{
+  color: #c2c2c2;
+  font-size: 28rpx;
+}
+
+.background{
+  background-color: rgba(0, 0, 0, .4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+  z-index: 100;
+  transition: height 4s;
+}
+
+.area{
+  margin: 15rpx 68rpx;
+  border: 1rpx solid #e7e7e7;
+  padding: 3rpx;
+  border-radius: 5rpx;
+  width: 600rpx;
+  height: 260rpx;
+}

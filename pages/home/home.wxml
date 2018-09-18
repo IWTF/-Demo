@@ -1,0 +1,75 @@
+<import src="../guide/guide.wxml"/>
+
+<view bindtouchend='touchend' bindtouchstart='touchstart'>
+  <template is="page_tab" data="{{userInfo}}"/>
+
+  <template is="bg" data="{{display}}"/>
+
+  <!-- 主页 -->
+  <view class='home'  style='{{translate}}'>
+    <view>
+      <image src='/images/icon/cai.png' class='avatar' bindtap='showview'></image>
+      <input class='search' placeholder='搜索活动' placeholder-class='placeholder' bindtap="change"></input>
+    </view>
+    <swiper class='header' autoplay='true' duration='1000' interval='3000'>
+      <view wx:if="{{activity.length == 0}}">
+        <block wx:for="{{image}}" wx:key="{{index}}">
+          <swiper-item>
+            <view style='border-radius: 15rpx;'>
+              <image src='{{item}}'></image>
+              <view class='hot' style='width:130rpx;margin:auto;'>图片展示</view>
+            </view>
+          </swiper-item>
+        </block>
+      </view>
+      <view wx:else>
+        <block wx:for="{{activity}}" wx:key="{{index}}">
+          <swiper-item wx:if="{{index<=3}}">
+            <view style='border-radius: 15rpx;'>
+              <navigator url='/pages/act_detail/act_detail?objectId={{id[index]}}'>
+                <image src='{{item.imgUrl}}'></image>
+              </navigator>
+              <view class='header_text'>
+                <view class='hot'>最热活动</view>
+                <view class='activity'>{{item.name}}</view>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </view>
+    </swiper>
+    <view class="news">
+      <image src='/images/icon/new.png'></image>
+      <view>最新活动</view>
+    </view>
+    <view wx:if="{{activity.length != 0}}">
+      <block wx:for="{{activity}}" wx:key="{{index}}">
+        <view class="post_container">
+          <view class='post_user'>
+            <image src='{{item.avatarImg}}' ></image>
+            <view>{{item.userName}}</view>
+            <view style='margin-left:100rpx'>{{nowDate[index]}}</view>
+          </view>
+          <view>
+            <view class='sort' style='margin:10rpx 0rpx;'>
+              <text style='background-color:#00ceab;margin-left:0rpx;'></text>
+              <text>{{item.typ}}</text>
+            </view>
+            <navigator url='/pages/act_detail/act_detail?objectId={{id[index]}}&page=0'>
+              <image src='{{item.imgUrl}}' class='post_img'></image>
+            </navigator>
+            <view style='font-size:26rpx;'>{{item.name}}</view>
+            <view class='inf'>
+              <view >有效时间：{{item.date}}</view>
+              <view style='padding-bottom:15rpx;'>活动地点：{{item.place}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else style='padding:150rpx 0rpx 100rpx 0;color:#1190fe;backgroud-color:#fff;'>
+      <view style='padding: 0 250rpx;padding-bottom: 15rpx;'>还没有活动奥~</view>
+      <view style='padding: 0 200rpx;'>快去发起一个吧(^_^)</view>
+    </view>
+  </view>
+</view>

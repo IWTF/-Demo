@@ -1,0 +1,86 @@
+/* pages/guide/guide.wxss */
+
+/* 背景 */
+.bg {    
+  display: none;          
+  position: fixed;       
+  top: 0%;    
+  left: 70%;    
+  width: 100%;    
+  height: 100%;    
+  background-color: black;    
+  z-index: 1001;    
+  -moz-opacity: 0.7;    
+  opacity: 0.70;    
+  transition:width 2s;  
+  filter: alpha(opacity=70);    
+}   
+
+/* 滑动菜单 */
+.page_tab {  
+  height: 100%;  
+  width: 750rpx;  
+  position: fixed;  
+  background-color: white;  
+  z-index: 0;
+}  
+
+.user{
+  width: 100%;
+  margin-left: 196rpx;
+  margin-top: 40rpx;
+  
+}
+
+.user_img{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.user_name{
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+
+.sex{
+  width: 45rpx;
+  height: 45rpx;
+  margin-top: 5rpx;
+}
+
+.sport{
+  display: flex;
+  flex-direction: row;
+  margin: 40rpx 0;
+}
+
+.sport view{
+  display: flex;
+  flex-direction: column;
+  width: 170rpx;
+  text-align: center;
+  padding-bottom: 10rpx;
+  border-bottom: 8rpx solid #e2e2e2;
+}
+
+.item{
+  display: flex;
+  flex-direction: row;
+  width: 300rpx;
+  margin-left: 110rpx;
+  padding: 12rpx;
+  border-bottom: 3rpx solid #e2e2e2;
+}
+
+.item image{
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.item view{
+  font-size: 32rpx;
+  margin-left: 100rpx;
+  margin-top: 10rpx;
+}

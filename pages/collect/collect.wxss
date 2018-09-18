@@ -1,0 +1,98 @@
+.header{
+  background-image: url("https://www.cayani.cn/usr/uploads/2018/08/2714390371.jpg");          
+  additive-symbols: no-repeat;
+  background-size: 100% 100%;
+  width: 750rpx;
+  height: 360rpx;
+}
+
+.launch{
+  font-size: 40rpx;
+  color: #fff;
+  padding: 150rpx 0rpx 0 40rpx;
+}
+
+.totle{
+  font-size: 30rpx;
+  color: #fff;
+  padding: 20px 0rpx;
+  margin-left: 40rpx;
+}
+
+.content{
+  height: 100%;
+  width: 100%;
+}
+
+.content image{
+  height: 120rpx;
+  width: 120rpx;
+  margin: auto;
+  margin-top: 70rpx;
+  margin-left: 310rpx;
+}
+
+.content view{
+  font-size: 28rpx;
+  padding: 30rpx 0;
+  margin-left: 310rpx;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+}
+
+.container image{
+  width: 240rpx;
+  height: 150rpx;
+  flex: 1;
+}
+
+.text_container{
+  margin-left: 10rpx;
+  font-size: 27rpx;
+  color: #6b6b6b;
+  flex: 2;
+}
+
+/* dfadfadf ddddddddddddddddddddddddddddd */
+.touch-item {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:2px solid #ccc;
+  width: 100%;
+  overflow: hidden
+}
+.content_container {
+  width: 100%;
+  padding: 10px;
+  line-height: 22px;
+  margin-right:0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  margin-left: -90px
+}
+.del {
+  background-color: orangered;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.touch-move-active .content,
+.touch-move-active .del {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}

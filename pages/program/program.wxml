@@ -1,0 +1,12 @@
+<!--pages/program/program.wxml-->
+<view>
+  <view class='title'>项目介绍</view>
+  <view class='content'>
+    <view>
+      刚刚接触小程序，觉得其核心是对一些控件和API的掌握和使用，但东西太多，全部看完掌握
+      难度有点大，正确打开方法个人认为应该是用到什么就到文档里查；
+      为了验证自己的掌握情况，并加深对一些常用控件的掌握，故决定做一个练手的小项目。
+    </view>
+    <view style='padding: 30rpx 0;'>仅为练手所用，难免有些粗糙！！</view>
+  </view>
+</view>

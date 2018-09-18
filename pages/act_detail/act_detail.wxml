@@ -1,0 +1,110 @@
+<!--pages/act_detail/act_detail.wxml-->
+<view>
+  <view style='{{translate}};background-color: #fff;'>
+    <image src='{{activity.imgUrl}}' class='bg'></image>
+    <view class='middle'>
+      <view>{{activity.name}}</view>
+      <view class='poster_container' style='padding 0;'>
+        <view class='poster' style='border-style: none;'>发起者：{{activity.userName}}</view>
+        <view style='border-style: none;'>点赞数：{{like_num}}</view>
+        <view style='margin-left:20rpx;border-style: none;'>评论数：0</view>
+      </view>
+      <view>活动地点     {{activity.place}}</view>
+      <view>有效时间     {{activity.date}}</view>
+      <view>活动类型     {{activity.typ}}</view>
+      <view wx:if="{{activity.num < 100}}">人数限制     {{activity.num}}</view>
+      <view wx:else>人数限制      {{activity.num}}</view>
+      <view>发起状态 <text style='color:red;'>准备中</text></view>
+    </view>
+    <view class='content_container'>
+      <view class='content'>详情</view>
+      <view style='padding: 50rpx 30rpx;'>{{activity.content}}</view>
+    </view>
+    <view class='talk_container'>
+      <view class='header'>
+        <view>{{like_num}}人点赞</view>
+        <button wx:if='{{!like}}' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+          <image src='/images/icon/like.png'></image>
+        </button>
+        <button wx:else open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+          <image src='/images/icon/like1.png'></image>
+        </button>
+      </view>
+      <view class='kong'  wx:if="{{likersUrl.length == 0}}">无人点赞</view>
+      <view class='kong' wx:else style='display:flex;flex-direction:row;'>
+        <block wx:for="{{likersUrl}}" wx:key="{{index}}">
+          <image src='{{item}}'></image>
+        </block>
+      </view>
+    </view>
+    <view class='talk_container'>
+      <view class='header'>
+        <view>{{join_num}}人参加</view>
+        <view wx:if="{{activity.num < 100}}" style='margin-left: 430rpx;'>
+          上限 {{activity.num}} 人</view>
+        <view wx:else style='margin-left: 430rpx;'>不限制人数</view>
+      </view>
+      <view class='kong'  wx:if="{{joiner.length == 0}}">暂无人加入</view>
+      <view class='kong' wx:else style='display:flex;flex-direction:row;'>
+        <block wx:for="{{joiner}}" wx:key="{{index}}">
+          <image src='{{item}}'></image>
+        </block>
+      </view>
+    </view>
+
+    <!-- 评论列表 -->
+    <view style='padding:40rpx;background-color:#fff;background-color: #fff;'>
+      <view>
+        <text style='font-size:28rpx;font-weight:bold;'>短评</text>
+      </view>
+      <scroll-view>
+        <view wx:for="{{talk}}" wx:key="{{index}}" 
+          style='display:flex;flex-direction:row;margin-bottom:55rpx;position:relative;'>
+          <image src='{{item.avatarUrl}}' class='avatar_image'></image>
+          <view class='talk_container'>
+            <view class='name_container'>
+              <text class='talk_name' style='font-size:28rpx;'>{{item.nickName}}</text>
+            </view>
+            <text style='font-size:28rpx;'>{{item.content}}</text>
+            <text style='position:absolute;font-size:11px;color:#a4a4a4;right:0rpx;'>2018-8-16</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <button bindtap='talk' style='border-bottom: 150rpx solid #e2e2e2;'>评论</button>
+  </view>
+
+
+  <!-- 加入收藏按钮 -->
+  <view class='btn' wx:if='{{page == 0}}'>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="join" 
+      wx:if='{{joiner.length < activity.num}}'>现在加入</button>
+    <button wx:else disabled='true'>人数已满</button>
+    <button wx:if='{{collect}}' open-type="getUserInfo" lang="zh_CN" 
+      bindgetuserinfo="cancel_collect">取消收藏</button>
+    <button wx:else open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="collect">
+      立即收藏</button>
+  </view>
+  <view wx:if='{{page == 1}}' class='btn'>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="cancel_join">取消加入</button>
+  </view>
+  <view wx:if='{{page == 2}}' class='btn'>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="cancel_collect">取消收藏</button>
+  </view>
+
+  <!-- 评论框 -->
+  <view class='talk_bar' style='z-index:{{index}};background-color: #fff;padding:0;'>
+    <form bindsubmit="bindFormSubmit">
+      <textarea placeholder='说点什么吧~' placeholder-class='holder' 
+        name="textarea" class='area'></textarea>
+      <button form-type="submit" style='border-radius:50rpx;background-color: #489cfc;'> 评论 </button>
+    </form>
+    <button catchtap="cancel" 
+      style='border-radius:50rpx;background-color: #489cfc;margin-top: 5rpx;width:100%;'>取消</button>
+  </view>
+
+  <!-- bg -->
+  <view class='background' bindtap='hideview' style='display:{{display}};height:60%;'></view>
+</view>
+

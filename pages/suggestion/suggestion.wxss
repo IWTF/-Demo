@@ -1,0 +1,5 @@
+/* pages/suggestion/suggestion.wxss */
+.btn{
+  border: none;
+  box-shadow: 0 0 2rpx #fff;
+}
