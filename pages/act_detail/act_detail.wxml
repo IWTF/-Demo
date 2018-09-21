@@ -1,7 +1,7 @@
 <!--pages/act_detail/act_detail.wxml-->
 <view>
   <view style='{{translate}};background-color: #fff;'>
-    <image src='{{activity.imgUrl}}' class='bg'></image>
+    <image src='{{activity.imgUrl}}' class='bg' mode='widthFix'></image>
     <view class='middle'>
       <view>{{activity.name}}</view>
       <view class='poster_container' style='padding 0;'>
@@ -57,30 +57,34 @@
       <view>
         <text style='font-size:28rpx;font-weight:bold;'>短评</text>
       </view>
-      <scroll-view>
-        <view wx:for="{{talk}}" wx:key="{{index}}" 
-          style='display:flex;flex-direction:row;margin-bottom:55rpx;position:relative;'>
-          <image src='{{item.avatarUrl}}' class='avatar_image'></image>
-          <view class='talk_container'>
-            <view class='name_container'>
-              <text class='talk_name' style='font-size:28rpx;'>{{item.nickName}}</text>
-            </view>
-            <text style='font-size:28rpx;'>{{item.content}}</text>
-            <text style='position:absolute;font-size:11px;color:#a4a4a4;right:0rpx;'>2018-8-16</text>
+      <view wx:for="{{talk}}" wx:key='{{key}}' class='pinglun'>
+        <view class='talker'>
+          <image src='{{item.avatarUrl}}'></image>
+          <view style='margin-left: 15rpx;'>
+            <view style='font-size:29rpx;font-weight: bold;'>{{item.nickName}}</view>
+            <view style='font-size:26rpx;color:#ccc;'>2810</view>
           </view>
         </view>
-      </scroll-view>
-    </view>
+        <text>{{item.content}}</text>
+      </view>
 
-    <button bindtap='talk' style='border-bottom: 150rpx solid #e2e2e2;'>评论</button>
+      <form bindsubmit="bindFormSubmit">
+        <textarea placeholder='说点什么吧~' placeholder-class='holder' 
+          name="textarea" class='area' value='{{content}}'></textarea>
+        <button form-type="submit" 
+          style='border-radius:50rpx;background-color: #489cfc;margin-bottom:80rpx;font-size:26rpx;   color:#fff;'> 评论 </button>
+      </form>
+    </view>
   </view>
 
 
   <!-- 加入收藏按钮 -->
   <view class='btn' wx:if='{{page == 0}}'>
     <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="join" 
-      wx:if='{{joiner.length < activity.num}}'>现在加入</button>
-    <button wx:else disabled='true'>人数已满</button>
+      wx:if='{{joiner.length < activity.num && !join}}'>现在加入</button>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="join" 
+      wx:if='{{joiner.length < activity.num && join}}' disabled='true'>现在加入</button>
+    <button wx:if="{{joiner.length >= activity.num}}" disabled='true'>人数已满</button>
     <button wx:if='{{collect}}' open-type="getUserInfo" lang="zh_CN" 
       bindgetuserinfo="cancel_collect">取消收藏</button>
     <button wx:else open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="collect">
@@ -93,18 +97,5 @@
     <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="cancel_collect">取消收藏</button>
   </view>
 
-  <!-- 评论框 -->
-  <view class='talk_bar' style='z-index:{{index}};background-color: #fff;padding:0;'>
-    <form bindsubmit="bindFormSubmit">
-      <textarea placeholder='说点什么吧~' placeholder-class='holder' 
-        name="textarea" class='area'></textarea>
-      <button form-type="submit" style='border-radius:50rpx;background-color: #489cfc;'> 评论 </button>
-    </form>
-    <button catchtap="cancel" 
-      style='border-radius:50rpx;background-color: #489cfc;margin-top: 5rpx;width:100%;'>取消</button>
-  </view>
-
-  <!-- bg -->
-  <view class='background' bindtap='hideview' style='display:{{display}};height:60%;'></view>
 </view>
 

@@ -2,6 +2,7 @@
 var app = getApp();
 var util = require('../../utils/util.js')
 var Bmob = require('../../utils/bmob.js');
+var request = require('request.js');
 
 Page({
   data: {
@@ -20,7 +21,9 @@ Page({
     collect: false,
     index: -1,
     userInfo: {},
-    talk: []
+    talk: [],
+    content:"",
+    join: false
   },
   onLoad: function (options) {
 
@@ -36,28 +39,6 @@ Page({
     })
 
     var that = this;
-
-    //获取评论信息
-    var Diary = Bmob.Object.extend("talk");
-    var query = new Bmob.Query(Diary);
-
-    query.equalTo("name", this.data.activity.name);
-    query.equalTo("userName", this.data.activity.userName);
-
-    query.find({
-      success: function (results) {
-        var object = [];
-        for (var i = 0; i < results.length; i++) {
-          object = object.concat(results[i]);
-        }
-        that.setData({
-          talk: object
-        })
-      },
-      error: function (error) {
-        console.log("查询失败: " + error.code + " " + error.message);
-      }
-    });
 
     // 获取点赞情况
     var nickName = userInfo.nickName;
@@ -95,7 +76,51 @@ Page({
         that.setData({
           activity: result.attributes
         })
-        console.log('activity:',that.data.activity);
+
+        //获取评论信息
+        var Diary = Bmob.Object.extend("talk");
+        var query = new Bmob.Query(Diary);
+
+        query.equalTo("name", that.data.activity.name);
+        query.equalTo("userName", that.data.activity.userName);
+
+        query.find({
+          success: function (results) {
+            var object = [];
+            for(var i = 0; i<results.length; i++){
+              object = object.concat(results[i].attributes);
+            }
+            that.setData({
+              talk: object
+            })
+          },
+          error: function (error) {
+            console.log("查询失败: " + error.code + " " + error.message);
+          }
+        });
+
+        // 获取收藏信息
+        var Diary = Bmob.Object.extend("collect");
+        var query = new Bmob.Query(Diary);
+        query.equalTo("name", that.data.activity.name);
+        query.equalTo("joiner", that.data.userInfo.nickName);
+
+        query.find({
+          success: function (results) {
+            if(results.length > 0){
+              that.setData({
+                collect: true
+              })
+            }else{
+              that.setData({
+                collect: false
+              })
+            }
+          },
+          error: function (error) {
+            console.log("查询失败: " + error.code + " " + error.message);
+          }
+        });
       },
     });
 
@@ -109,6 +134,10 @@ Page({
         var object = [];
         for (var i = 0; i < results.length; i++) {
           object = object.concat(results[i].attributes.avatarUrl);
+          if (userInfo.nickName == results[i].attributes.joiner)
+            that.setData({
+              join: true
+            })
         }
         that.setData({
           joiner: object,
@@ -128,7 +157,6 @@ Page({
       like: !this.data.like
     })
 
-    console.log(e.detail.userInfo)
     var that = this;
     var name = e.detail.userInfo.nickName;
     var imgUrl = e.detail.userInfo.avatarUrl;
@@ -228,23 +256,6 @@ Page({
     });
   },
 
-// 会出现闪退的现象？？
-  cancel_collect:function(e){
-    var that = this;
-
-    var query = new Bmob.Query('collect');
-    query.equalTo("name", that.data.activity.name);
-    query.equalTo("joiner", e.detail.userInfo.nickName);
-    query.find().then(function (todos) {
-      return Bmob.Object.destroyAll(todos);
-    }).then(function (todos) {
-      that.setData({
-        collect: false
-      })
-    },function(error){
-    });
-  },
-
   cancel_join:function(e){
     var nickName = e.detail.userInfo.nickName;
     var name = this.data.activity.name;
@@ -286,29 +297,12 @@ Page({
         icon: 'success',
         duration: 2000
       });
-
-      wx.navigateBack({
-        delta: 1
+      that.setData({
+        collect: false
       })
     }, function (error) {
       // 异常处理
     });
-  },
-
-  talk: function(){
-    this.setData({
-      display: "block",
-      translate: 'transform: translateY(-' + this.data.windowHeight * 0.3 + 'px);',
-      index: 9999
-    })
-  },
-
-  hideview: function(){
-    this.setData({
-      display: "none",
-      translate: '',
-      index: -1
-    })
   },
 
   bindFormSubmit: function (e) {
@@ -318,40 +312,39 @@ Page({
     var avatarUrl = userInfo.avatarUrl;
     var content = e.detail.value.textarea;
 
-    var Diary = Bmob.Object.extend("talk");
-    var diary = new Diary();
-    diary.set("nickName", nickName);
-    diary.set("avatarUrl", avatarUrl);
-    diary.set("content", content);
-    diary.set("name", this.data.activity.name);
-    diary.set("userName", this.data.activity.userName);
 
-    diary.save(null, {
-      success: function (result) {
-        that.onLoad(that.data.options);
-        wx.showToast({
-          title: '评论成功',
-          icon: 'success',
-          duration: 2000
-        });
-      },
-      error: function (result, error) {
-        console.log('创建日记失败');
-      }
-    });
+    if(content == ""){
+      wx.showToast({
+        title: '不能为空白',
+        icon: 'none',
+        duration: 2000
+      });
+    }else{
+      var Diary = Bmob.Object.extend("talk");
+      var diary = new Diary();
+      diary.set("nickName", nickName);
+      diary.set("avatarUrl", avatarUrl);
+      diary.set("content", content);
+      diary.set("name", this.data.activity.name);
+      diary.set("userName", this.data.activity.userName);
 
-    this.setData({
-      display: "none",
-      translate: '',
-      index: -1
-    })
+      diary.save(null, {
+        success: function (result) {
+          wx.showToast({
+            title: '评论成功',
+            icon: 'success',
+            duration: 2000
+          });
+          that.setData({
+            content: ""
+          })
+          that.onLoad(that.data.options);
+        },
+        error: function (result, error) {
+          console.log('创建日记失败');
+        }
+      });
+    }
   },
 
-  cancel: function(){
-    this.setData({
-      display: "none",
-      translate: '',
-      index: -1
-    })
-  }
 })

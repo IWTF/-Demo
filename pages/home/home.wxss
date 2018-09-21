@@ -42,6 +42,7 @@
   width: 600rpx;
   height: 400rpx;
   border-radius: 15rpx;
+  background-color: rgba(255, 107, 107, 0.4);
 }
 
 .header_text{
@@ -107,6 +108,7 @@
   width:100%;
   border-radius: 15rpx;
   margin: auto;
+  background-color: rgba(252, 157, 154, .5);
 }
 
 .inf view{

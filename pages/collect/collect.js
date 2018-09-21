@@ -23,7 +23,7 @@ Page({
       options: options
     })
 
-    var Diary = Bmob.Object.extend("join");
+    var Diary = Bmob.Object.extend("collect");
     var query = new Bmob.Query(Diary);
 
     query.equalTo("joiner", userInfo.nickName);

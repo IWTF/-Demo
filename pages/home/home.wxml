@@ -12,11 +12,11 @@
       <input class='search' placeholder='搜索活动' placeholder-class='placeholder' bindtap="change"></input>
     </view>
     <swiper class='header' autoplay='true' duration='1000' interval='3000'>
-      <view wx:if="{{activity.length == 0}}">
+      <view wx:if="{{activity.length == 0 || activity.length == 1}}">
         <block wx:for="{{image}}" wx:key="{{index}}">
           <swiper-item>
             <view style='border-radius: 15rpx;'>
-              <image src='{{item}}'></image>
+              <image src='{{item}}' mode='aspectFit'></image>
               <view class='hot' style='width:130rpx;margin:auto;'>图片展示</view>
             </view>
           </swiper-item>
@@ -27,7 +27,7 @@
           <swiper-item wx:if="{{index<=3}}">
             <view style='border-radius: 15rpx;'>
               <navigator url='/pages/act_detail/act_detail?objectId={{id[index]}}'>
-                <image src='{{item.imgUrl}}'></image>
+                <image src='{{item.imgUrl}}' mode='aspectFit'></image>
               </navigator>
               <view class='header_text'>
                 <view class='hot'>最热活动</view>
@@ -46,7 +46,7 @@
       <block wx:for="{{activity}}" wx:key="{{index}}">
         <view class="post_container">
           <view class='post_user'>
-            <image src='{{item.avatarImg}}' ></image>
+            <image src='{{item.avatarImg}}'></image>
             <view>{{item.userName}}</view>
             <view style='margin-left:100rpx'>{{nowDate[index]}}</view>
           </view>
@@ -56,7 +56,7 @@
               <text>{{item.typ}}</text>
             </view>
             <navigator url='/pages/act_detail/act_detail?objectId={{id[index]}}&page=0'>
-              <image src='{{item.imgUrl}}' class='post_img'></image>
+              <image src='{{item.imgUrl}}' class='post_img'  mode='aspectFit'></image>
             </navigator>
             <view style='font-size:26rpx;'>{{item.name}}</view>
             <view class='inf'>

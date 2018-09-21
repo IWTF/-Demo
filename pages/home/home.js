@@ -21,6 +21,7 @@ Page({
     ]
   },
 
+
   onLoad: function (options) {
     var user = app.globalData.userInfo;
     this.setData({
@@ -28,7 +29,48 @@ Page({
     })
     var that = this;
 
-    var arr = [];  var arrTime = []; var id = [];
+    // 数据缓存
+    wx.getStorage({
+      key: 'activity',
+      success: function (res) {
+        console.log("getStroge", res);
+        if(res.data.length > 0){
+          that.setData({
+            activity: res.data
+          })
+          wx.getStorage({
+            key: 'arrTime',
+            success: function(res) {
+              that.setData({
+                nowDate: res.data
+              })
+            },
+          })
+          wx.getStorage({
+            key: 'id',
+            success: function (res) {
+              that.setData({
+                id: res.data
+              })
+            },
+          })
+        }else{
+          that.request();
+        }
+      },fail:function(){
+        that.request();
+      },
+    })
+  },
+
+  onShow: function(){
+    this.onLoad();
+  },
+
+  request:function(){
+    var that = this;
+    
+    var arr = []; var arrTime = []; var id = [];
     var Diary = Bmob.Object.extend("activity");
     var query = new Bmob.Query(Diary);
     query.find({
@@ -41,20 +83,29 @@ Page({
           arrTime = arrTime.concat(obj.updatedAt)
           id = id.concat(obj.id)
         }
+        console.log("request");
         that.setData({
           activity: arr,
           nowDate: arrTime,
           id: id
+        })
+        wx.setStorage({
+          key: 'activity',
+          data: arr,
+        })
+        wx.setStorage({
+          key: 'arrTime',
+          data: arrTime,
+        })
+        wx.setStorage({
+          key: 'id',
+          data: id,
         })
       },
       error: function (error) {
         console.log("查询失败: " + error.code + " " + error.message);
       }
     });
-  },
-
-  onShow: function(){
-    this.onLoad();
   },
 
   change:function(){

@@ -42,14 +42,17 @@
     <textarea name="content" placeholder='请输入活动内容' class='content' value='{{content}}'></textarea>
   </view>
 <!-- 加图 -->
-   <view class='add' wx:if="{{imgUrl.length == 0}}">
-     <image src='/images/icon/add.png' bindtap='upload'></image>
-     <view>添加封面图片（选）</view>
-   </view>
-   <view wx:else class='add'>
-     <image src='{{imgUrl}}' style='margin:auto;margin-top:20rpx;margin-bottom:20rpx;'></image>
-   </view>
-   <view class='btn_container'>
-     <button class='btn' form-type='submit'>发起</button>
-   </view>
+  <view class='add' wx:if="{{imgUrl.length == 0}}">
+    <image src='/images/icon/add.png' bindtap='upload'></image>
+    <view>添加封面图片（选）</view>
+  </view>
+  <view wx:else class='add' style='display:block;text-align:center;position: relative;'>
+    <image src='{{imgUrl}}' mode='widthFix' style='margin:auto;margin-top:20rpx;margin-bottom:20rpx;'
+      bindtap='upload'></image>
+    <view>点击可更换图片</view>
+    <span class='cancel' bindtap="cancel">+</span>
+  </view>
+  <view class='btn_container'>
+    <button class='btn' form-type='submit'>发起</button>
+  </view>
 </form>

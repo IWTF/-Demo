@@ -19,29 +19,42 @@ Page({
       userInfo: user
     })
 
-    var Diary = Bmob.Object.extend("activity");
-    var query = new Bmob.Query(Diary);
-
-    var hot = [];
-    var activity = [];
-    var arrTime = [];
     var that = this;
 
-
-    query.find({
-      success: function (results) {
-        for (var i = 0; i < results.length; i++) {
-          hot = hot.concat(results[i].attributes.name);
-          activity = activity.concat(results[i].attributes);
-          arrTime = arrTime.concat(results[i].updatedAt);
-          activity[i].id = results[i].id;
+    // 获取缓存的活动内容
+    wx.getStorage({
+      key: 'activity',
+      success: function(res) {
+        var activity = res.data;
+        var hot = [];
+        var arrTime = [];
+        for (var i = 0; i < activity.length; i++) {
+          hot = hot.concat(activity[i].name);
         }
+        // 获取活动更新时间的缓存数据
+        wx.getStorage({
+          key: 'arrTime',
+          success: function(res) {
+            arrTime = res.data;
+          },
+        })
+        // 获取活动id的缓存数据
+        wx.getStorage({
+          key: 'id',
+          success: function(res) {
+            for(var i=0; i<res.data.length; i++)
+            {
+              activity[i].id = res.data[i];
+            }
+          },
+        })
+
         that.setData({
           hot: hot,
           mate: hot,
           activity: activity,
           nowDate: arrTime
-        })
+        }),
 
         // 2 搜索栏初始化
         WxSearch.init(
@@ -52,10 +65,7 @@ Page({
           that.myGobackFunction //提供一个返回回调函数
         );
       },
-      error: function (error) {
-        console.log("查询失败: " + error.code + " " + error.message);
-      }
-    });
+    })
 
   },
 

@@ -10,7 +10,6 @@
 .name{
   margin: 0;
   flex: 4;
-  
   font-size: 31rpx;
   color: #6d6d6d;
 }
@@ -69,6 +68,21 @@
   font-size: 31rpx;
   color: #9c9c9c;
   margin: auto;
+}
+
+.cancel{
+  font-weight: bold;
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+  color: #fff;
+  position: absolute;
+  top: 10rpx;
+  right: 200rpx;
+  line-height: 34rpx;
+  background-color: #000;
+  margin: 0;
+  transform: rotate(45deg);
 }
 
 .btn_container{
