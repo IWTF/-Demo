@@ -6,7 +6,6 @@
 
 >模仿bomb后端云优秀开源项目————出发吧一起
 
-额，代码结构搅乱，风格青涩。。大家不要拉取！
 ### 效果图：
 ![home](https://github.com/IWTF/wx-Demo/blob/master/pro-image/%E6%8D%95%E8%8E%B7.PNG)
 
